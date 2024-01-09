@@ -1,0 +1,21 @@
+{
+  "HarmonyId": "JAN.rolementionsmanager",
+  "DisplayName": "Role Mentions Manager",
+  "Authors": [
+    "JustAnotherNoob"
+  ],
+  "Description": "Allows you to modify the order and the acronyms of the role mentions of the game (and the keywords too if you feel like it). For support join <color=blue>https://discord.gg/ht8ttc3R8E</color>",
+  "Version": "1.0.0",
+  "RequiredMods": [],
+  "Settings": {
+    "CheckboxSettings": 
+    [
+      {
+        "Name": "Modify keywords too.",
+        "Description": "This will:\n1. Add the keywords (the mentions that appear with ':') to the base file\n2. Apply the changes from the modded files to the keywords.\nRequires you to dump the files again.",
+        "DefaultValue": false,
+        "AvailableInGame": false
+      }
+    ]
+  }
+}

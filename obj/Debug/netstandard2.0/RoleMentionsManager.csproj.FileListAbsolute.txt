@@ -1,0 +1,15 @@
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\RoleMentionsManager.deps.json
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\RoleMentionsManager.dll
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\RoleMentionsManager.pdb
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\Assembly-CSharp.dll
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\SalemModLoader.dll
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\Unity.TextMeshPro.dll
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\bin\Debug\netstandard2.0\UnityEngine.UI.dll
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.csproj.AssemblyReference.cache
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.GeneratedMSBuildEditorConfig.editorconfig
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.AssemblyInfoInputs.cache
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.AssemblyInfo.cs
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.csproj.CoreCompileInputs.cache
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.csproj.CopyComplete
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.dll
+D:\Apps\JAN's stuff\ToS 2\RoleMentionsManager\obj\Debug\netstandard2.0\RoleMentionsManager.pdb
