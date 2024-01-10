@@ -15,6 +15,7 @@ using Mentions.Providers;
 using System.IO;
 using Mentions;
 using Server.Shared.Extensions;
+using Server.Shared.Info;
 
 namespace Main
 {
@@ -166,7 +167,6 @@ namespace Main
         [HarmonyPrefix]
         public static bool Prefix(ref RebuildMentionTypesFlag rebuildMentionTypesFlag, SharedMentionsProvider __instance)
         {
-            Debug.LogWarning("This works :thumb:");
             bool modKeywords = ModSettings.GetBool("Modify keywords too.", "JAN.rolementionsmanager");
             if (!rebuildMentionTypesFlag.HasFlag(RebuildMentionTypesFlag.ROLES) && !(rebuildMentionTypesFlag.HasFlag(RebuildMentionTypesFlag.KEYWORDS) && modKeywords)) return true;
             string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "SalemModLoader", "ModFolders", "Mentions Info");
@@ -341,23 +341,89 @@ namespace Main
                         });
                     num++;
                 }
-                flag2 = false;
-            }
-            if (flag2 && flag3)
-            {
-                rebuildMentionTypesFlag = RebuildMentionTypesFlag.KEYWORDS | RebuildMentionTypesFlag.PLAYERS;
-                return true;
-            }
-            else if (flag2)
-            {
-                rebuildMentionTypesFlag = RebuildMentionTypesFlag.KEYWORDS;
-                return true;
-            }
-            else if (flag3)
-            {
-                rebuildMentionTypesFlag = RebuildMentionTypesFlag.PLAYERS;
-                return true;
-            }
+            }else if (flag2)
+			{
+				List<KeywordInfo> list2 = new(Service.Game.Keyword.keywordInfo);
+				list2.Sort((KeywordInfo a, KeywordInfo b) => string.Compare(__instance.l10n(a.KeywordKey), __instance.l10n(b.KeywordKey), StringComparison.Ordinal));
+				int num2 = 0;
+				foreach (KeywordInfo keywordInfo in list2)
+				{
+					string text5 = __instance.l10n(keywordInfo.KeywordKey);
+					string match3 = ":" + text5;
+					string match4 = ":" + text5;
+					string encodedText2 = string.Format("[[:{0}]]", keywordInfo.KeywordId);
+					string text6 = "#007AFF";
+					string text7 = __instance._useColors ? string.Concat(new string[]
+					{
+						"<color=",
+						text6,
+						"><b>",
+						text5,
+						"</b></color>"
+					}) : ("<b>" + text5 + "</b>");
+					string text8 = string.Format("{0}{1}<link=\"k{2}\"><b>{3}</b></link>{4}", new object[]
+					{
+						__instance.styleTagOpen,
+						__instance.styleTagFont,
+						keywordInfo.KeywordId,
+						text7,
+						__instance.styleTagClose
+					});
+					MentionInfo mentionInfo2 = new MentionInfo
+					{
+						mentionInfoType = MentionInfo.MentionInfoType.KEYWORD,
+						richText = text8,
+						encodedText = encodedText2,
+						hashCode = text8.ToLower().GetHashCode(),
+						humanText = ":" + text5.ToLower()
+					};
+					__instance.MentionInfos.Add(mentionInfo2);
+					__instance.MentionTokens.Add(new MentionToken
+					{
+						mentionTokenType = MentionToken.MentionTokenType.KEYWORD,
+						match = match3,
+						mentionInfo = mentionInfo2,
+						priority = num2
+					});
+					__instance.MentionTokens.Add(new MentionToken
+					{
+						mentionTokenType = MentionToken.MentionTokenType.KEYWORD,
+						match = match4,
+						mentionInfo = mentionInfo2,
+						priority = num2
+					});
+					num2++;
+				}
+			}
+			if (flag3)
+			{
+				if (Pepper.IsLobbyPhase())
+				{
+					List<DiscussionPlayerObservation> discussionPlayers = Service.Game.Sim.info.discussionPlayers;
+					for (int i = 0; i < discussionPlayers.Count; i++)
+					{
+						DiscussionPlayerObservation discussionPlayerObservation = discussionPlayers[i];
+						if (discussionPlayerObservation != null && !string.IsNullOrEmpty(discussionPlayerObservation.Data.accountName))
+						{
+							int playerSkin = Service.Game.Cast.GetPlayerSkin(discussionPlayerObservation.Data.position);
+							__instance.PreparePlayerMentions(discussionPlayerObservation, playerSkin, i, MentionInfo.MentionInfoType.ACCOUNT, MentionToken.MentionTokenType.ACCOUNT);
+						}
+					}
+				}
+				if (Pepper.IsPickNamesOrGamePhase())
+				{
+					List<DiscussionPlayerObservation> discussionPlayers2 = Service.Game.Sim.info.discussionPlayers;
+					for (int j = 0; j < discussionPlayers2.Count; j++)
+					{
+						DiscussionPlayerObservation discussionPlayerObservation2 = discussionPlayers2[j];
+						if (discussionPlayerObservation2 != null && !string.IsNullOrEmpty(discussionPlayerObservation2.Data.gameName))
+						{
+							int playerSkin2 = Service.Game.Cast.GetPlayerSkin(discussionPlayerObservation2.Data.position);
+							__instance.PreparePlayerMentions(discussionPlayerObservation2, playerSkin2, j, MentionInfo.MentionInfoType.PLAYER, MentionToken.MentionTokenType.PLAYER);
+						}
+					}
+				}
+			}
             return false;
         }
     }
