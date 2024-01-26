@@ -5,8 +5,9 @@
     "JustAnotherNoob"
   ],
   "Description": "Allows you to modify the order and the acronyms of the role mentions of the game (and the keywords too if you feel like it). For support join <color=blue>https://discord.gg/ht8ttc3R8E</color>",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "RequiredMods": [],
+  "ConflictingMods": ["curt.tuba.better.tos"],
   "Settings": {
     "CheckboxSettings": 
     [
